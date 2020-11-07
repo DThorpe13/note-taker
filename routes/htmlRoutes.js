@@ -5,6 +5,6 @@ router.get("/notes", (req, res) => {
     // here you will render the notes HTML page
 })
 
-router.get("*", (req, res) => {
+router.get("/", (req, res) => {
     // this is the default route where you will render index.html
 })
