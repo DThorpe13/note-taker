@@ -37,26 +37,14 @@ class Store {
         throw new Error("Note 'title' and 'text' cannot be blank");
     }
 
+    const newNote = { title, text, id: ++this.lastId };
+
+    return this.getNotes()
+    .then(notes => [...notes, newNote])
+    .then(updatedNotes => this.write(updatedNotes))
+    .then(() => newNote);
+
         
-    
-
-    // set up variables with our notes data here
-    // Error handle here, if we have no title or text added throw a new error explaining what is wrong
-    
-//     const { title,text } = note;
-//     console.log(note);
-
-//     const newNote = { title, text, id: uuidv1() };
-    
-//     if (!title || !text) {
-//       throw new Error("Note 'title' and 'text' cannot be blank");
-//     }
-//     return this.getNotes() 
-//     .then(notes => {
-//         notes.join(note, newNote)
-//     });
-//     // Add a unique id to the note using uuid package
-//     // Get all notes, add the new note, write all the updated notes, return the newNote
 };
   removeNote(id) {
 
@@ -64,7 +52,7 @@ class Store {
 
     .then(notes => notes.filter(note => note.id !== parseInt(id)))
 
-    .then(remainingNotes => this.write(remainingNotes))
+    .then(filteredNotes => this.write(filteredNotes));
 
   }
 }
