@@ -12,10 +12,12 @@ router.get("/notes", (req, res) => {
 
 router.get("/", (req, res) => {
 
-    // this is the default route where you will render index.html
+    
 
     res.sendFile(path.join(__dirname, '../public/index.html'))
 
     });
+
+module.exports = router; 
 
 
