@@ -30,29 +30,31 @@ class Store {
         return parsedNotes;
     })
   }
+
   addNote(note) {
     const { title, text } = note;
 
     if (!title || !text) {
-        throw new Error("Note 'title' and 'text' cannot be blank");
+        throw new Error("Title and text cannot be blank!");
     }
 
-    const newNote = { title, text, id: ++this.lastId };
+    const nextNote = { title, text, id: ++this.lastId };
 
     return this.getNotes()
-    .then(notes => [...notes, newNote])
+    .then(notes => [...notes, nextNote])
     .then(updatedNotes => this.write(updatedNotes))
-    .then(() => newNote);
+    .then(() => nextNote);
 
         
 };
+
   removeNote(id) {
 
     return this.getNotes()
 
     .then(notes => notes.filter(note => note.id !== parseInt(id)))
 
-    .then(filteredNotes => this.write(filteredNotes));
+    .then(filterNotes => this.write(filterNotes));
 
   }
 }
